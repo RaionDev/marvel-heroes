@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia';
-import { fetchSeries, fetchSeriesDetails } from '../../services/marvelService';
+import { fetchSeries } from '../../services/marvelService';
 
 
 export const useMarvelStore = defineStore('marvel', {
@@ -24,17 +24,7 @@ export const useMarvelStore = defineStore('marvel', {
         this.loading = false;
       }
     },
-    async loadSeriesDetails(id) {
-      this.loading = true;
-      try {
-        const { data } = await fetchSeriesDetails(id);
-        this.selectedSeries = data.data.results[0];
-      } catch (error) {
-        console.error(error);
-      } finally {
-        this.loading = false;
-      }
-    },
+
     saveItem(item) {
       if (this.savedItems.length < 10 && !this.savedItems.some(i => i.id === item.id)) {
         this.savedItems.push(item);
@@ -55,5 +45,10 @@ export const useMarvelStore = defineStore('marvel', {
     clearHistory() {
       this.history = [];
     },
+
+    selectSeries(series) {
+      this.selectedSeries = series; 
+    },
+
   },
 });

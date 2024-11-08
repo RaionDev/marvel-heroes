@@ -4,8 +4,8 @@
       <div class="detail-image">
         <img :src="series.thumbnail.path + '.' + series.thumbnail.extension" alt="Series Image"/>
       </div>
-      <button @click="toggleSave(series)">
-        {{ isSaved ? 'Remove from Saved' : 'Save' }}
+      <button class="styled-button" @click="toggleSave(series)">
+        {{ isSaved ? 'Remove' : 'Save' }}
       </button>      
       <p v-if="saveLimitReached" class="limit-warning">Maximum saved items reached.</p>
 
@@ -19,6 +19,7 @@
   </template>
   
   <script>
+  import "@/assets/styles/detail-style.scss"
   import { useMarvelStore } from '../store/modules/marvelStore';
   import TabsGroup from '@/components/TabsGroup.vue';
   export default {
@@ -45,46 +46,33 @@
       },
     },
     methods: {
-      async loadSeriesDetails() {
-        const { id } = this.$route.params;
-        await this.marvelStore.loadSeriesDetails(id);
-        this.series = this.marvelStore.selectedSeries;
-        if (this.series) {
-          this.comics = this.series.comics.items || [];
-          this.stories = this.series.stories.items || [];
-          this.characters = this.series.characters.items || [];
-          this.creators = this.series.creators.items || [];
-
-        }
-      },
       toggleSave(item) {
-        if (!this.isSaved) {
-              if (this.saveLimitReached) {
-              alert('Maximum saved items reached.');
-            } else {
-              this.marvelStore.saveItem(item);
-            }
-        } else {
-          this.marvelStore.removeSavedItem(item.id);
-        }      
+          if (!this.isSaved) {
+                if (this.saveLimitReached) {
+                alert('Maximum saved items reached.');
+              } else {
+                this.marvelStore.saveItem(item);
+              }
+          } else {
+            this.marvelStore.removeSavedItem(item.id);
+          }      
         },
+      
+      addToHistory(item) {
+        const alreadyInHistory = this.marvelStore.history.some(historyItem => historyItem.id === item.id);
+        if (!alreadyInHistory) {
+          this.marvelStore.addToHistory(item);
+        }
+      }
     },
-    created() {
-      this.loadSeriesDetails();
+    created() {      
+      this.series = this.marvelStore.selectedSeries;
+      console.log(this.series)
+      this.comics = this.series?.comics.items || [];
+      this.stories = this.series?.stories.items || [];
+      this.characters = this.series?.characters.items || [];
+      this.creators = this.series?.creators.items || [];
+      this.addToHistory(this.series);
     },
   };
   </script>
-
-<style scoped>
-  .limit-warning {
-    color: red;
-    font-size: 0.9em;
-  }
-
-  .detail-img {
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #ddd; 
-  }
-</style>

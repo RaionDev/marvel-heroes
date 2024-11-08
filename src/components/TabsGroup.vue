@@ -86,26 +86,40 @@
   
   <style scoped>
   .tabs {
+    margin-top: 20px;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 10px;
+    justify-content: center;
+    margin-bottom: 0;
+    border-bottom: 2px solid #ccc;
   }
   
   .tabs button {
-    padding: 0.5em 1em;
-    margin: 0.5em;
-    cursor: pointer;
-    background-color: #eee;
-    border: none;
-    font-weight: bold;
-  }
+  padding: 0.75em 1.25em;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  border-radius: 5px 5px 0 0;
+}
+.tabs button:hover {
+  background-color: #e0e0e0;
+}
   
   .tabs button:focus,
   .tabs button.active {
-    background-color: #ccc;
-  }
+  background-color: #42b983;
+  color: white;
+  border-color: #42b983;
+  border-bottom: 2px solid #42b983;
+  font-weight: 600;
+}
   
-  .tab-content {
-    margin-top: 1em;
-  }
+.tab-content {
+  padding: 10px;
+  background-color: #fafafa;
+  border-radius: 0 0 5px 5px; 
+}
   </style>

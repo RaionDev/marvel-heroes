@@ -48,6 +48,7 @@
         );
       },
     },
+
     methods: {
       removeSeries(id) {
         this.marvelStore.removeSavedItem(id);
@@ -65,4 +66,23 @@
       },
     },
   };
-  </script>
+</script>
+<style scoped>
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.saved-items,
+.history-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+
+</style>

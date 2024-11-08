@@ -23,6 +23,8 @@
   </template>
   
   <script>
+  import '@/assets/styles/series-card.scss';
+
   export default {
     name: 'SeriesCard',
     props: {
@@ -37,7 +39,7 @@
     },
     methods: {
       viewDetails() {
-        this.$emit('viewDetails', this.series.id);
+        this.$emit('viewDetails', this.series);
       },
       removeItem() {
         this.$emit('removeItem', this.series.id);
@@ -55,74 +57,3 @@
   };
   </script>
   
-  <style scoped>
-  .series-card {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #ddd; 
-    transition: transform 0.2s, border-color 0.3s; 
-  }
-
-  .series-card:hover {
-    transform: scale(1.05); 
-    border-color: #007bff; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-  }
-  .series-image {
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .image-container {
-    width: 100%;
-    height: 300px; 
-    overflow: hidden;
-    border-radius: 10px;
-  }
-
-  .remove-button {
-    margin-top: 8px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 0.9em;
-  }
-
-  .details {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .year {
-    color: #555;
-  }
-
-
-  .type {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .type.collection {
-    color: blue;
-  }
-
-  .type.event {
-    color: red;
-  }
-
-  .related-resources {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #777;
-  }
-  </style>

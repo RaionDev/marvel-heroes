@@ -1,0 +1,50 @@
+$primary-color: #007bff;
+$hover-color: #0056b3;
+$active-color: #004494;
+$warning-color: red;
+$border-radius: 15px;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+.limit-warning {
+  color: $warning-color;
+  font-size: 0.9em;
+}
+
+.detail-image {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 300px;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px $shadow-color;
+  border: 2px solid #ddd;
+  
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+.styled-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: $hover-color;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    background-color: $active-color;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}

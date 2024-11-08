@@ -1,0 +1,76 @@
+$primary-color: #007bff;
+$hover-color: #0056b3;
+$remove-button-bg: #ff4d4d;
+$remove-button-color: white;
+$border-color: #ddd;
+$box-shadow: rgba(0, 0, 0, 0.1);
+
+.series-card {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px $box-shadow;
+  border: 2px solid $border-color;
+  transition: transform 0.2s, border-color 0.3s;
+}
+
+.series-card:hover {
+  transform: scale(1.05);
+  border-color: $primary-color;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.series-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.remove-button {
+  margin-top: 8px;
+  background-color: $remove-button-bg;
+  color: $remove-button-color;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.year {
+  color: #555;
+}
+
+.type {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.type.collection {
+  color: blue;
+}
+
+.type.event {
+  color: red;
+}
+
+.related-resources {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #777;
+}

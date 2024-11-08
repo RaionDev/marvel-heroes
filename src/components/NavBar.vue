@@ -1,26 +1,42 @@
 <template>
     <nav class="navbar">
       <router-link 
+        v-if="!isDetailsPage" 
         to="/" 
-        class="nav-link" 
-        active-class="active-link"
+        class="nav-link"
+        exact-active-class="active-link"
       >
         Home
       </router-link>
       <router-link 
+        v-if="!isDetailsPage" 
         to="/history" 
         class="nav-link" 
         active-class="active-link"
       >
         History
       </router-link>
+      <router-link 
+        v-if="isDetailsPage" 
+        to="/"
+        class="nav-link" 
+        exact-active-class="active-link"
+      >
+        Back to Home
+    </router-link>
     </nav>
   </template>
   
   <script>
   export default {
     name: 'NavBar',
+    computed: {
+    isDetailsPage() {
+      return this.$route.name === 'Details'; // o la ruta específica
+    }
+  }
   };
+  
   </script>
   
   <style scoped>

@@ -18,7 +18,6 @@
   import SeriesCard from '@/components/SeriesCard.vue';
   import { useMarvelStore } from '../store/modules/marvelStore';
   import LoadingSpinner from '@/components/LoadingSpinner.vue';
-  
   export default {
     components: { SeriesCard, LoadingSpinner },
     name: 'HomeView',
@@ -31,8 +30,9 @@
       loadMore() {
         this.marvelStore.loadSeries(this.marvelStore.series.length);
       },
-      viewDetails(id) {
-        this.$router.push({ name: 'Details', params: { id } });
+      viewDetails(series) {
+        this.marvelStore.selectSeries(series); 
+        this.$router.push({ name: 'Details', params: { id: series.id } });
       },
 
       handleIntersection(entries) {
@@ -62,9 +62,23 @@
   <style scoped>
     .series-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(3, 1fr); 
         gap: 20px;
         margin: 0 auto;
+        padding: 20px;
+        justify-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .series-container {
+          grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .series-container {
+          grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
+      }
     }
     .sentinel {
       height: 20px;
