@@ -3,14 +3,15 @@
       <h3>{{ title }}</h3>
       <div class="horizontal-list">
         <div v-for="item in items" :key="item.id || item.resourceURI" class="item">
-            <h4>{{ item.name }}</h4>
-            <p v-if="item.role">{{ item.role }}</p> <!-- Solo para creators -->
+          <h4>{{ item.name }}</h4>
+            <p v-if="item.role">{{ item.role }}</p> 
         </div>
       </div>
     </div>
   </template>
   
   <script>
+
   export default {
     name: 'TabList',
     props: {
