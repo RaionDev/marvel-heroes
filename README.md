@@ -23,7 +23,7 @@ This project is a Vue application that allows users to explore Marvel series, sa
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/marvel-series-viewer.git
+   git clone https://github.com/RaionDev/marvel-heroes.git
    cd marvel-series-viewer.
 2. **Clave de API de Marvel**: Necesitarás una clave de API de Marvel para poder consultar sus datos.
 
