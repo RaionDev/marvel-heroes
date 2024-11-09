@@ -8,8 +8,8 @@
         />
       </div>
       <h3>{{ series.title }}</h3>
-      <p class="year">{{ series.startYear }}</p>
-      <p class="type" :class="series.type">{{ series.type }}</p>
+      <p class="year">Year: {{ series.startYear }}</p>
+      <p class="type" :class="series.type" v-if="series.type">Type: {{ series.type }}</p>
       <p class="related-resources">
         {{ numberOfRelatedResources }} related resources
       </p>

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavBar />
-    <router-view />
+    
+    <router-view class="style-router"/>
   </div>
 </template>
 
@@ -19,7 +20,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
 }
-
+.style-router{
+  margin-top: 70px;
+}
 </style>

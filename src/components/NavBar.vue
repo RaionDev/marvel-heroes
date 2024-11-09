@@ -41,11 +41,14 @@
   
   <style scoped>
   .navbar {
+    position: fixed;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #35495e;
     padding: 15px;
-    border-radius: 8px;
+    top: 0;
+    z-index: 999;
   }
   
   .nav-link {

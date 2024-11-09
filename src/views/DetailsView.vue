@@ -1,5 +1,13 @@
 <template>
+  
     <div v-if="series">
+      <div v-if="loading">
+        <LoadingSpinner :isLoading="loading"/>
+      </div>
+
+      <div v-else-if="error">
+        <h2>Error: {{ error }}</h2>
+      </div>
       <h1>{{ series.title }}</h1>
       <div class="detail-image">
         <img :src="series.thumbnail.path + '.' + series.thumbnail.extension" alt="Series Image"/>
@@ -44,6 +52,12 @@
       saveLimitReached() {
             return this.marvelStore.savedItems.length >= 10;
       },
+      loading() {
+        return this.marvelStore.loading;
+      },
+      error() {
+        return this.marvelStore.error;
+      },
     },
     methods: {
       toggleSave(item) {
@@ -67,12 +81,14 @@
     },
     created() {      
       this.series = this.marvelStore.selectedSeries;
-      console.log(this.series)
-      this.comics = this.series?.comics.items || [];
-      this.stories = this.series?.stories.items || [];
-      this.characters = this.series?.characters.items || [];
-      this.creators = this.series?.creators.items || [];
-      this.addToHistory(this.series);
+      if(this.series){
+        this.comics = this.series?.comics.items || [];
+        this.stories = this.series?.stories.items || [];
+        this.characters = this.series?.characters.items || [];
+        this.creators = this.series?.creators.items || [];
+        this.addToHistory(this.series);
+      }
+
     },
   };
   </script>

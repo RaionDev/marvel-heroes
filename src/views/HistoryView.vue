@@ -1,29 +1,39 @@
 <template>
     <div>
-      <h1>History</h1>
-      <section v-if="savedItems.length > 0">
-        <h2>Saved Series</h2>
-        <SeriesCard 
-          v-for="item in savedItems"
-          :key="item.id"
-          :series="item"
-          :showRemoveButton="true"
-          @viewDetails="viewSeriesDetails"
-          @removeItem="removeSeries"
-          @toggleSave="toggleSave"
-        />
+      <section v-if="loading">
+        <LoadingSpinner :isLoading="loading"/>
       </section>
 
+      <section v-else-if="error">
+        <h2>Error: {{ error }}</h2>
+      </section>
+
+      <section v-if="savedItems.length > 0">
+        <h2>Saved Series</h2>
+        <div class="series-container">
+          <SeriesCard 
+            v-for="item in savedItems"
+            :key="item.id"
+            :series="item"
+            :showRemoveButton="true"
+            @viewDetails="viewSeriesDetails"
+            @removeItem="removeSeries"
+            @toggleSave="toggleSave"
+          />
+        </div>
+      </section>
       <section v-if="historyItems.length > 0">
         <h2>History</h2>
-        <SeriesCard 
-          v-for="item in historyItems"
-          :key="item.id"
-          :series="item"
-          :showRemoveButton="false"
-          @viewDetails="viewSeriesDetails"
-          @toggleSave="toggleSave"
-        />
+        <div class="series-container">
+          <SeriesCard 
+            v-for="item in historyItems"
+            :key="item.id"
+            :series="item"
+            :showRemoveButton="false"
+            @viewDetails="viewSeriesDetails"
+            @toggleSave="toggleSave"
+          />
+        </div>
       </section>
     </div>
   </template>
@@ -31,6 +41,7 @@
   <script>
   import SeriesCard from '@/components/SeriesCard.vue';
   import { useMarvelStore } from '../store/modules/marvelStore';
+  import '@/assets/styles/series-styles.scss'
   
   export default {
   components: { SeriesCard },
@@ -46,6 +57,12 @@
         return this.marvelStore.history.filter(item => 
           !this.savedItems.some(savedItem => savedItem.id === item.id)
         );
+      },
+      loading() {
+        return this.marvelStore.loading;
+      },
+      error() {
+        return this.marvelStore.error;
       },
     },
 

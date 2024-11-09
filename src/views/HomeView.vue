@@ -1,6 +1,10 @@
 <template>
     <div>
       <h1>Marvel Series</h1>
+
+      <div v-if="error">
+        <h2>Error: {{ error }}</h2>
+      </div>
       <div class="series-container">
         <SeriesCard 
           v-for="series in marvelStore.series"
@@ -18,12 +22,17 @@
   import SeriesCard from '@/components/SeriesCard.vue';
   import { useMarvelStore } from '../store/modules/marvelStore';
   import LoadingSpinner from '@/components/LoadingSpinner.vue';
+  import '@/assets/styles/series-styles.scss'
+
   export default {
     components: { SeriesCard, LoadingSpinner },
     name: 'HomeView',
     computed: {
       marvelStore() {
         return useMarvelStore();
+      },
+      error() {
+        return this.marvelStore.error;
       },
     },
     methods: {
@@ -60,26 +69,6 @@
   };
   </script>
   <style scoped>
-    .series-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 20px;
-        margin: 0 auto;
-        padding: 20px;
-        justify-items: center;
-    }
-
-    @media (max-width: 1024px) {
-      .series-container {
-          grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
-      }
-    }
-
-    @media (max-width: 600px) {
-      .series-container {
-          grid-template-columns: 1fr; /* 1 columna en pantallas pequeñas */
-      }
-    }
     .sentinel {
       height: 20px;
     }
